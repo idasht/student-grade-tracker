@@ -25,35 +25,25 @@ void printStudentInfo(const Student& s) {
 }
 
 int main() {
-    std::vector<Student> students;
-    int numStudents;
+    Student s;
 
-    std::cout << "How many students? ";
-    std::cin >> numStudents;
+    std::cout << "Enter your name: ";
+    std::cin >> s.name;
 
-    for (int i = 0; i < numStudents; ++i) {
-        Student s;
-        std::cout << "Enter name for student " << i + 1 << ": ";
-        std::cin >> s.name;
+    int numGrades;
+    std::cout << "How many grades do you want to enter? ";
+    std::cin >> numGrades;
 
-        int numGrades;
-        std::cout << "How many grades for " << s.name << "? ";
-        std::cin >> numGrades;
-
-        s.grades.resize(numGrades);
-        std::cout << "Enter " << numGrades << " grades:\n";
-        for (int j = 0; j < numGrades; ++j) {
-            std::cin >> s.grades[j];
-        }
-
-        s.average = calculateAverage(s.grades);
-        students.push_back(s);
+    s.grades.resize(numGrades);
+    std::cout << "Enter " << numGrades << " grades:\n";
+    for (int j = 0; j < numGrades; ++j) {
+        std::cin >> s.grades[j];
     }
 
-    std::cout << "\n--- Student Report ---\n";
-    for (const Student& s : students) {
-        printStudentInfo(s);
-    }
+    s.average = calculateAverage(s.grades);
+
+    std::cout << "\n--- Your Report ---\n";
+    printStudentInfo(s);
 
     return 0;
 }
